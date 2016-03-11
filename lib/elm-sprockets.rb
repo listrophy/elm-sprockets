@@ -5,5 +5,5 @@ module ElmSprockets
 
   Sprockets.register_mime_type 'text/elm', extensions: ['.elm', '.js.elm']
   Sprockets.register_transformer 'text/elm', 'application/javascript', ElmProcessor
-  Sprockets.register_preprocessor 'text/elm', DirectiveProcessor.new(comments: ['--', ['{-', '-}']])
+  Sprockets.register_preprocessor 'text/elm', Sprockets::DirectiveProcessor.new(comments: ['--', ['{-', '-}']])
 end
