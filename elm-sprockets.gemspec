@@ -1,7 +1,7 @@
 Gem::Specification.new do |s|
   s.name = 'elm-sprockets'
-  s.version = '0.0.1'
-  s.date = '2016-03-10'
+  s.version = '0.1.0'
+  s.date = '2016-03-11'
   s.summary = 'Elm in your rails assets pipeline'
   s.description = 'Compile elm files for rails.'
   s.authors = ['Yves Brissaud']
