@@ -1,10 +1,10 @@
-require 'elm-sprockets'
+require 'elm_sprockets'
 require 'sprockets/cache'
 require 'fileutils'
 
 describe ElmSprockets::ElmProcessor do
-  before(:each) {
-    elm_content =<<EOF
+  before(:each) do
+    elm_content = <<EOF
 import Html exposing (text)
 
 main =
@@ -18,7 +18,6 @@ EOF
       cache: Sprockets::Cache.new,
       metadata: { mapping: [] }
     }
-
 
     File.open('elm-package.json', 'w') do |file|
       package = <<EOF
@@ -42,12 +41,13 @@ EOF
     end
 
     # If elm-make is installed, uncomment the following line
-    allow(ElmSprockets::Autoload::Elm).to receive(:make) { ElmSprockets::Autoload::Elm::Runnable.new 'echo' }
-  }
+    allow(ElmSprockets::Autoload::Elm).to(
+      receive(:make) { ElmSprockets::Autoload::Elm::Runnable.new 'echo' })
+  end
 
-  after(:each) {
+  after(:each) do
     FileUtils.rm 'elm-package.json'
-  }
+  end
 
   context '##call' do
     it 'compile elm file without exception' do

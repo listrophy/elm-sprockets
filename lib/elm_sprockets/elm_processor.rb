@@ -1,8 +1,9 @@
-require 'elm-sprockets/autoload'
+require 'elm_sprockets/autoload'
 
 module ElmSprockets
+  # Compile Elm files for sprockets
   class ElmProcessor
-    VERSION = '1'
+    VERSION = '1'.freeze
 
     def self.instance
       @instance ||= new
@@ -13,7 +14,7 @@ module ElmSprockets
     end
 
     def initialize(options = {})
-      @options = options.merge({warn: true}).freeze
+      @options = options.merge(warn: true).freeze
       @opts = (Autoload::Elm::Options.with @options).freeze
 
       @cache_key = [
