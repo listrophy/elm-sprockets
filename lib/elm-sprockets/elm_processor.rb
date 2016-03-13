@@ -26,7 +26,7 @@ module ElmSprockets
     def call(input)
       data = input[:data]
       input[:cache].fetch(@cache_key + [input[:filename]] + [data]) do
-        elm = Autoload::Elm.compiler.files([input[:source_path]]).to_s
+        elm = Autoload::Elm.compiler.content(input[:data]).to_s
         { data: elm.output }
       end
     end
