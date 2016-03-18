@@ -4,7 +4,7 @@ require 'sprockets'
 module Sprockets
   require 'elm_sprockets/elm_processor'
 
-  register_mime_type 'text/elm', extensions: ['.elm', '.js.elm']
+  register_mime_type 'text/elm', extensions: ['.elm']
   register_transformer(
     'text/elm',
     'application/javascript',
