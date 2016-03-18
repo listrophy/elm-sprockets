@@ -26,10 +26,15 @@ module ElmSprockets
 
     def call(input)
       data = input[:data]
-      input[:cache].fetch(@cache_key + [input[:filename]] + [data]) do
-        elm = Autoload::Elm.compiler.content(input[:data]).to_s
-        { data: elm.output }
+      context = input[:environment].context_class.new(input)
+      elm = input[:cache].fetch(@cache_key + [input[:filename]] + [data]) do
+        Autoload::Elm.compiler.content(input[:data]).to_s
       end
+      deps = Elm::Dependencies.from_content(data)
+      deps.each do |dep|
+        context.depend_on File.absolute_path(dep)
+      end
+      context.metadata.merge(data: elm.output)
     end
   end
 end
