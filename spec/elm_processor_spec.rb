@@ -12,11 +12,13 @@ main =
 EOF
 
     @input = {
+      environment: Sprockets::Environment.new,
+      filename: 'test.elm',
       content_type: 'application/elm',
       data: elm_content,
       name: 'test',
       cache: Sprockets::Cache.new,
-      metadata: { mapping: [] }
+      metadata: { }
     }
 
     File.open('elm-package.json', 'w') do |file|
